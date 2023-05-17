@@ -1,0 +1,113 @@
+:root{
+    --primary: #d20000;
+}
+
+.banner{
+    background: var(--primary);
+    height: 25rem;
+
+    .banner_cover{
+        width: 100%;
+        height: 100%;
+        background: rgb(255, 255, 255, 0.1);
+        //background: rgb(210, 0, 0,0.5);
+        text-align: center;
+        h4{
+            padding: 0; 
+            margin: 0;
+            color: #fff;
+            font-size: 3rem;
+            padding-top: 7rem;
+        }
+        h6{
+            color: #aaa7a7;
+            font-size: 2rem;
+            padding: 0; 
+            margin: 0;  
+        }
+        p{
+            color: #efefef;
+            font-size: 2rem;
+        }
+    }
+  
+}
+
+//all tilte
+.title{
+    background: #d20000;
+    width: 80%;
+    margin: auto;
+    // display: flex;
+    // justify-content: space-between;
+    h2{
+        font-weight: 500;
+    }
+    
+}
+
+//servitor
+.carousel{
+    background: green;
+    width: 77%;
+    margin: auto;
+    // display: flex;
+    overflow: hidden;
+
+    .list-servitor{
+        background: red;
+        width: 100%;
+        display: flex;
+        overflow-x: auto;
+        // overflow: hidden;
+        // overflow: hidden;
+        li{
+            background: #fff;
+            border-radius: 4px;
+            height: 10rem;
+            width: 20rem;
+            flex-shrink: 0;
+            margin: 5px;
+        }
+    }
+}
+
+//responsive
+@media screen and (max-width:1024px){
+   
+}
+@media screen and (max-width:600px){
+     //banner
+    .banner{
+        background: var(--primary);
+
+        .banner_cover{
+            text-align: center;
+
+            h4{
+                font-size: 2.5rem;
+                padding-top: 4rem;
+            }
+            h6{
+                color: #aaa7a7;
+                font-size: 1.8rem;
+            }
+            p{
+                color: #efefef;
+                font-size: 1.9rem;
+            }
+        }
+  
+    }
+    //all tilte
+    .title{
+        background: #d20000;
+        width: 95%;
+        margin: auto;
+
+        h2{
+            font-weight: 400;
+        }
+        
+    }
+}

@@ -1,0 +1,14 @@
+.blog-list{
+    width: 80%;
+    background: black;
+     
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+}
+
+.card{
+    width: 320px;
+    background: #fff;
+    margin: 2px;
+}

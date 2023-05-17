@@ -1,13 +1,129 @@
-.login{
-    background: red;
-    width: 30%;
-    margin: auto;
+.login {
+  background: transparent;
+  //border:1px solid #000;
+  width: 25%;
+  margin: auto;
+  margin-top: 15%;
 
-    form{
-        background: rgba(255, 255, 255, 0.3);
-        color: #fff;
-        h1{
-            font-size: 20px;
-        }
+  form {
+    background: rgba(255, 255, 255, 0.3);
+    color: gray;
+    text-align: center;
+    h1 {
+      font-size: 20px;
+      text-align: center;
+      padding: 10px 2px;
+      color: #000;
     }
+    .container-form {
+      background: transparent;
+      display: flex;
+      flex-direction: column;
+      margin: 7px 30px;
+      text-align: start;
+      label{margin-bottom: 4px;}
+      input {
+        font-size: 16px;
+        border: 1px solid gray;
+        padding:7px 3px;
+        //background: #f0dcdc;
+        color: gray;
+
+      }
+    }
+    .btn{
+      text-align: center;
+      border: 2px solid black;
+      background: #000;
+      border-radius: 3px;
+      padding: 5px 105px;
+      outline: none;
+      margin: 10px;
+      color: #fff;
+      cursor: pointer;
+      &:hover{ background: #fff; color: #000;}
+      font-weight: bold;
+    }
+  }
+}
+
+//dashbord
+.dash{
+    background: red;
+    .sidebar{
+        width: 140px;
+        height: 100%;
+        background: #000;
+        color: #fff;
+    }
+}
+
+//reponsive
+@media screen and (max-width:1024px){
+  .login {
+    background: red;
+    border:none;
+    width: 50%;
+    margin: auto;
+    margin-top: 20%;
+  
+    form {
+      background: rgba(255, 255, 255, 0.3);
+      color: gray;
+      text-align: center;
+      h1 {
+        font-size: 18px;
+        padding: 8px 2px;
+        color: #000;
+      }
+      .container-form {
+        margin: 7px 10px;
+        input {
+          font-size: 15px;
+          padding:12px 3px;
+          //background: #f0dcdc;
+          color: gray;
+        }
+      }
+      .btn{  
+        border: 1px solid black;
+        padding: 15px 125px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 600px) {
+    .login {
+        background: transparent;
+        border:none;
+        width: 90%;
+        margin: auto;
+        margin-top: 50%;
+      
+        form {
+          background: rgba(255, 255, 255, 0.3);
+          color: gray;
+          text-align: center;
+          h1 {
+            font-size: 18px;
+            padding: 8px 2px;
+            color: #000;
+          }
+          .container-form {
+            margin: 7px 10px;
+            input {
+              font-size: 15px;
+              padding:12px 3px;
+              //background: #f0dcdc;
+              color: gray;
+            }
+          }
+          .btn{
+               
+            border: 1px solid black;
+            padding: 15px 125px;
+          }
+        }
+      }
+      
 }

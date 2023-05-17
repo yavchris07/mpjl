@@ -1,13 +1,17 @@
 import React,{
-    useState,
     useEffect
 } from 'react'
 import axios from 'axios'
+ 
+ 
 
 export function Agent() {
 
-    const [inputs,setInputs] = useState({})
-    const [agents,setAgents] = useState([])
+    const [inputs,setInputs] = React.useState({})
+    const [agents,setAgents] = React.useState([])
+
+    //const URL = 'http://localhost/mpjl/controller/'
+    const BASEURL = 'http://localhost:5001/api/'
 
     const handleChange=(event)=>{
         const name = event.target.name
@@ -15,72 +19,111 @@ export function Agent() {
         setInputs(values => ({...values, [name]: value}))
     }
 
-    const handleSubmit=(e)=>{
+    const handleSubmit= async (e)=>{
         e.preventDefault()
-        axios.post('http://localhost/mpjl/controller/agents/create_agent.php', inputs)
-        .then((response)=>{
-            console.log(response.data)
-            //setAgents(response.data)
-        })
-        .catch((err) => {
-            console.log(err)})
-        
-        //using of useNavigate
-        //const navigate = useNavigate()
-        //.then(catch)
-        //navigate('/dashboard')
-        console.log(inputs)
+        try{
+          
+            //const response = await axios.post(URL+'  agents/create_agent.php', inputs)
+            const insertData = await axios.post(BASEURL+'members', inputs)
+            console.log(insertData.data)
+            console.log(inputs)
+        }
+        catch(err){
+            console.log(err)
+        }
+        //return response.data
     }
 
-    const getData =()=>{
-        axios.get('http://localhost/mpjl/controller/agents/read_all_agents.php')
-        .then((res)=>{
-            console.log(res.data)
-            setAgents(res.data)
-        })
-    }
+ 
+    const getData = async () =>{
 
+        try{
+            // //const fromApi = await axios.get(URL+'agents/read_all_agents.php')
+            // // const fromApi = await fetch(URL+'agents/read_all_agents.php')
+
+            axios.get(BASEURL+'members').then(res=>{
+                const ag = res.data
+                setAgents(ag)
+                console.log(agents)
+            })
+        }
+        catch(error){ 
+            console.log('Error is ', error)
+        }
+    }
+  
+     
     useEffect(()=>{
+        // axios.get(BASEURL+'members').then(res=>{
+        //     const ag = res.data
+        //     setAgents(ag)
+        //     console.log(agents)
+        // })
         getData()
     },[])
 
+    console.log(agents)
+    function agentList( ){
+        return (
+            <div>
+                {
+                    agents.length > 0 ? (
+                        <ul>
+                        {
+                            agents.map((agent,index)=>
+                            <li key={index}>{agent.name} = {agent.email}</li>
+                            )
+                        }
+                        </ul>)
+                    :(<p>Fetching failed</p>)
+                }
+                    
+            </div>
+            
+        )
+    }
+   // console.log('Our data ',agents)
     return (
        
         <div>
             <h1>Agent</h1>
             <form onSubmit={handleSubmit}>
                 <label>Noms</label>
-                <input type='text' name='noms' required onChange={handleChange}/>
+                <input 
+                    type='text' 
+                    name='name' 
+                    required 
+                    onChange={handleChange}
+                />
                 <br />
                 <label>Mot de passe </label>
-                <input type='password' name='password' required onChange={handleChange}/>
+                <input 
+                    type='email' 
+                    name='email' 
+                    required 
+                    onChange={handleChange}
+                />
                 <br />
                 <label>Role</label>
-                <input type='text'  name='role' required onChange={handleChange}/>
+                <input 
+                    type='text'  
+                    name='role' 
+                    required 
+                    onChange={handleChange}
+                />
                 <br />
-                <button>Ajouter</button>
+                <button>
+                    Ajouter
+                </button>
             </form>
 
             <h3> La liste des agents</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Noms</th><th>Mot de passe</th><th>Role</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        agents.map((ag,key)=>
-                            <tr key={key}>
-                                <td>{ag.noms}</td>
-                                <td>{ag.passwords}</td>
-                                <td>{ag.roles}</td>
-                            </tr>
-                        )
-                    }
-                </tbody>
-            </table>
-
+            {agentList()}
+            {/* {console.log(agents)} */}
+          
         </div>
     )
 }
+
+
+
